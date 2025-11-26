@@ -1,0 +1,599 @@
+0*.头文件
+#include<iostream>
+#include<iomanip> //详见9.3
+#include<cstring>
+  数组初始化 memset(a,0,sizeof(a));
+#include<string>
+  构造赋值 string s2 (s1); //把s1的值赋值给s2;
+  输入 getline(cin,str);
+  容量相关 len=str.size() len=str.length() //两者等价
+           pd=str.empty() //判断是否为空
+           str.reverse(100); //预留100个字符空间
+  元素访问 str.at(1) 等价于 str[1]
+          str.front() str.back() //分别访问首字母和末字母
+  修改操作 str.append(str2);   //等价于str=str+str2; 仅字符串
+           str.push_back(ch); //等价于str=str+ch; 仅字符
+           str.insert(n,str1); //下标为n的位置插入str1
+           str.erase(n,l); //删除下标n及以后的l个字符(不写l默认删到底)
+           str.replace(n,l,str1); //将下标n及以后的l个字符替换为str1
+           str.clear(); //清空
+  字符串操作 sub=str.substr(n,l) //取从下标为n开始的长度为l的子串
+            str.compare(n,l,str1) 
+            str.compare(str2) //比较字典序大小，str小返回负数，大返回正数，相同返回0
+            *注意比较大小时字符数组前要加string eg string(ch)>str1
+  查找操作 str.find(str1,l) //从编号为l的开始查找，返回第一次出现的位置，没有返回string::npos
+          str.rfind(str1) //从右向左查找
+          str.find_first_of(str1) //查找第一个在str和str1中都出现的字符
+          str.find_last_of(str1) //从右向左查找
+          str.find_first_not_of(str1) //查找第一个在str中出现但在str1中没出现的字符
+  交换 s1.swap(s2); //交换s1,s2
+  字符串转换为数字 stoi(str)/stol(str)/stof/stod //字符串转为int/long/float/double
+
+#include<cmath>
+  数学运算 sqrt(x)
+          pow(x,y) // x^y
+          abs(x) 
+          fabs(x) //绝对值(浮点数)
+  取整 ceil(x) //向上取整
+      floor(x) //向下取整
+      round(x) //四舍五入
+      trunc(x) //截断小数
+  三角 sin(x) cos(x) tan(x)
+       asin(x) acos(x) atan(x)
+  指数 exp(x)
+      log(x) //ln(x)
+      log10(x) //lg(x)
+  浮点数取余 fmod(x,y)
+  赋值 double max=-INFINITY;//负无穷大
+
+#include<algorithm>
+  排序与搜索 sort(a,a+n)  sort(a.begin(),a.end()) //前者为数组，后者为vector
+            sort(a,a+n)// n=sizeof(a) n其实为数组个数*每个元素的占用内存长度
+            sort(a,a+n,cmp);//默认升序排序 bool cmp(int a,int b){return a>b}则降序
+            另一种写法：sort(a,a+n,[] (int a,int b){return a>b});//Lambda表达式
+
+            auto it=find(a.begin(),a.end(),value) 
+            int index=it-a.begin()//寻找第一个值为value的元素，返回值为指向该元素的指针,若无，返回a.end()
+  数值操作 max(a,b)  min(a,b)
+          min_element(a.begin(),a.end()) max_element(a.begin(),a.end()) //找最大/小元素的位置
+  计数 count(a.begin(),a.end(),value)
+  修改操作 copy(a.begin(),a.end(),b.begin()) //把a复制给b
+          fill(a.begin(),a.end(),value) //用value填充a
+          reverse(a.begin(),a.end()) //将a倒序
+          replace(a.begin(),a.end(),a1,b1) //将a中所有值为a1的替换为b1
+  去重复 unique(a.begin(),a.end()) //去除相邻重复元素
+        next_permutation(a.begin(),a.end()); //下一个排列
+        prev_permutation(a.begin(),a.end()); //上一个排列
+              
+#include<vector> //见8.vector部分
+  构造与赋值 vector<int> v1; //空vector
+            vector<int> v2(5,10); //长度为5的数组，值均为10，默认是0
+            vector<int> v3={1,2,3,4,5};
+            vector<int> v4(v3);
+            v2=v1;
+  元素访问 v[x] v.at(x)
+          v.front() v.back() //指向第一/最后一个元素
+  容量相关 v.empty()//判断是否为空
+          v.size() //元素个数
+          v.capacity() //当前容量
+          v.reserve(100) //预留容量
+          v.shrink_to_fit() //缩减容量到适合大小
+  修改操作 v.push_back(value) //末尾添加
+          v.pop_back() //末尾删除(无返回值)
+          v.insert(v.begin()+x,value); //插入
+          v.erase(v.begin()+x); //删除
+          v.clear();
+          v.resize(6); //调整大小
+          v.resize(6,10); //调整大小并用10填充
+          v.swap(v1); //交换v,v1,只交换指针，比swap(v,v1)更加高效
+  *v.begin()指向第一个元素的位置 v.end()指向最后一个元素的下一个位置
+  二维vector vector<vector<int>> a(n,vector<int>(m)) //n行m列的二维vector
+
+  #include<ctime>
+  #include<cstdlib> //用于生成随机数 srand(time(0)); int t=rand();
+5.数据成分
+  sizeof 运算符
+  cout<<sizeof( int )<<endl;//输出int所占内存空间的字节数
+
+  整形  int 4 ; short (int) 2; long (int) 8; long long (int)
+    有符号 signed int/short  无符号 unsigned int/short
+    正整数时：补码=原码   负整数时：补码=原码取反+1
+    二进制 binary 八进制 octonary 十进制 decimal 十六进制 hexadecimal
+    以不同进制输出： cout<<hex/oct/dec<<a<<endl;
+    以不同进制输入： int a=0x7FFFF85(0x是16进制的标志) a=2147483525
+                  int a=037777777605(0是8进制的标志) a=-123
+
+  浮点 
+    float 4 (7位有效数字) ;double 8（15位有效数字） ; long double
+    设置有效数字：eg1:cout.precision(100); cout<<a<<endl;
+                 eg2:cout<<setprecision(100)<<a<<endl; //需要引入<iomanip>
+
+  布尔型 bool 非零为true,0为false
+
+  字符型 char(可以和整数相互赋值或运算) eg: char a=65;//a='A';
+                                        int b='a';//b=97;
+                                        int a='A'; a++ ；//a='B'；
+    转义字符：\a 响铃；  \n 换行；  \t 制表(tab)  \ \斜线  \' 单引号  \" 双引号
+
+  常量 constexpr eg: constexpr float PI=3.1415926;
+  字面量的后缀 L:(long int/long double) U:(unsigned) F:(float)  默认为 int 和 double
+
+  结构体 
+  struct Stu
+  {
+     int id;
+     char name[10];
+     float score;
+  };//注意大括号后的";"
+  Stu stu1;
+  stu1.id=101;
+  cout<<stu1.id; 可行   cout<<stu1; 不可行
+
+6.运算成分
+  赋值  a=b=c=5; 等价于 a=(b=(c=5));
+    类型转换 从高精度/高位数 转换为低精度/低位数 会损失精度(舍去高位)
+    表达式有值 eg i=10 的值就为 10 
+
+  算数运算
+    类型转换(剪刀法：取优先级最低的) 取高精度的
+    自加/减 i++ 先用后加 ； ++i 先加后用 （在for循环中两者等价）
+    逻辑表达式 && || ！ (非零为真)
+    短路特性：只有在必须执行下一个逻辑运算符才能求出表达式的解时才会计算
+
+  条件表达式  a?b:c eg: max=(a>b)?a:b;
+  逗号表达式  表达式1,表达式2 (返回表达式2的值)
+
+  强制类型转换 
+    (double) a ;
+     int(5.0/3) ; float(5/3)
+
+  位运算
+    按位与/或/异或 &/|/^  (xor 同0异1)
+    取反 ~ 左移 << 右移 >> (溢出舍弃)
+
+7.控制成分
+  分支结构
+  易错点1 if (a<5 && a>0) 是正确的 ; if (0<a<5) 是错误的< ((0<a)<5) = 0或1 < 5 >
+  多分支语句
+  switch (a)
+  {
+    case 0:cout<<'a'; break;//若无break则按顺序一直进行下去
+    case 1:cout<<'b'; break;
+    case 2:
+    case 3:
+    case 4:cout<<'c'; break;//2,3,4时均执行该语句
+    default: cout<<"error"; break;//default的位置不影响其功能
+  }
+
+  循环结构
+  for ()
+  while ()
+  do {} while();
+  *goto eg: loop: sum+=i; i++; if (i<=10) goto loop;
+
+8.数组
+  不能用变量初始化数组长度
+  数组的初始化 int a[5]={1,2,3,4,5};
+              int a[]={1,2,3,4};
+              int a[4]={1,2} //后面默认填充0
+              int a[10]={}等价于 int a[10]={0}
+  若直接输出数组a cout<<a; 返回 a 的初始地址
+
+  使用Vector 自动管理内存  //使用<vector>头文件
+      vector <int> a; 
+      a.push_back(x);  //数组末尾添加函数值x
+      a.size()；  //数组的大小
+      a.erase(a.begin()+n);  //删除数组中的第n+1个元素
+      a.insert(a.begin()+n,x);  //在第n+1位插入数据x
+      a.clear;  //清空
+      遍历方式
+        for (i=0;i<a.size();i++) cout<<a[i]<<endl;
+        for (int i:a) cout<<i<<endl;
+        for (auto it=a.begin();it != a.end();it++) cout<<*it<<endl;
+
+  二维数组 
+    初始化 int a[2][3]={{1,2,3},{4,5,6}};
+          int a[2][3]={1,2,3,4,5,6} //与上者等价
+          int a[][3]={1,2,3,4,5,6}  //与上者等价
+          int a[3][4]={}/{0}
+  
+  筛法求素数
+
+  排序：冒泡、选择、快速 sort(a,a+n)
+
+9.字符数组与字符串
+  (1)初始化char a[5]={'a','b','c','d','e'}
+        char a[5]={'a','b'}  //默认用\0补全
+    区分 字符数组 char c[]={'C','h','i','n','a'} China
+         字符串 char c[]="China"  China\0
+    不能用赋值语句直接将一个字符串常量或者一个字符数组赋值给另一个字符数组 
+      eg str1="hello" 不合法
+      可使用<cstring>中的strcpy(str2,str1)将str1的值赋值给str2 但已被淘汰
+      若使用循环赋值，注意最后要加上\0
+      长度strlen(ch)
+
+  (2)用cin输入
+    *缓冲区 遇到回车键送入缓冲区 cin从缓冲区中读取数据
+    *流 iostream 中: 输入流cin 输出流 cout 出错信息流 cerr/clog    fstream:文件输出流
+     
+    cin>>输入时跳过空格、tab、\n等字符
+
+
+  (3)用cout输出
+    输出到缓冲区，遇到endl立即输出缓冲区中的所有数据
+    cout<<字符数组 到\0截止
+    cout<<数组 输出地址
+    控制输出格式
+      进制转换
+        cout<<dec/hex/oct<<x<<endl;  //转换为10/16/8进制输出,换行   <iostream>头文件
+      
+        cout<<setiosflags(ios::hex/oct/dec|ios::showbase); //输出进制转换 <iomanip> 头文件
+        cout<<x<<endl;
+        cout<<resetiosflags(ios::hex/oct/dec|ios::showbase); //恢复  整体与上面等价
+        
+      设置有效数字位数
+        cout<<setprecision(7)<<x<<endl;//保留7位有效数字
+
+        cout<<setiosflags(ios::fixed);  //输出格式固定为小数格式
+        cout<<setprecision(7)<<x<<endl; //小数点后几位
+        cout<<resetiosflags(ios::fixed);//恢复
+
+        cout<<fixed<<setprecision(7)<<x<<endl; 
+        cout<<defaultfloat;  //和上一段等价
+
+        cout<<setiosflags(ios::scientific);  //科学计数法 3.56e+01=35.6
+        cout<<setprecision(7)<<x<<endl;
+        cout<<resetiosflags(ios::scientific);
+      
+      设置对齐方式
+        cout<<setiosflags(ios::left)<<x<<resetiosflags(ios::left); //向左对其(默认向右对齐)
+        
+      设置输出宽度
+        cout<<setw(10)<<x; //设置宽度
+        cout.width(10);  cout<<x; //与上者等价
+
+        cout.width(10); cout.fill('*'); cout<<x;//宽度不足之处用*补足
+        cout<<setfill('*')<<setw(10)<<x; //与上者等价
+
+
+  (4)字符与字符串的输入
+    <1>字符
+    cin 输入字符  cin>>c;(有返回值，参数错误返回0) 应用:while (cin>>c) //跳过空格
+
+    cin.get() 读入一个字符
+      cin.get()  while ((c=cin.get())!=EOF)  //EOF指文件末尾(end of file) 也可以自己设定结束字符
+        每次一个字符，不跳过空格和回车 ; 遇到ctrl+Z终止
+      cin.get(c) //不跳过字符和回车
+      
+    getchar 读入一个字符
+      c=getchar() //不跳过任何字符
+
+    <2>字符串
+    cin 输入字符串 跳过空格 while (cin>>str) 通过ctrl+Z终止输入
+
+    cin.get(ch,10,'\n') //读取长度上限为10-1=9个字符，终止字符为'\n'(默认为\n)
+    cin.getline(ch,10,'\n') 
+    *get 和 getline 的区别： get 遇到终止字符后指针不后移而 getline 后移
+     一般使用getline
+
+    一般cin>>n (int); 后输入字符串时需要加上 cin.ignore(),跳过回车键
+
+    *cin.read(str1,100); //读取100位
+
+9++.string 的使用
+  初始化 string str1; 默认值为""
+         string str2="c++" 结尾没有\0
+         string str3 (5,'s') 赋值为"sssss"
+
+  字符串长度：s.length()
+  
+  输入
+    若使用cin 会忽略空格 
+    getline(cin,str,',') //输入到','截止，若不输入，默认到换行为止(注意与cin混合使用的时候要使用cin.ignore())
+
+  拼接 string+string/char[]/char 均可
+  插入 str1.insert(5.str2) //在编号为5的位置插入字符串str2
+  删除 str1.erase(5) //删除编号5及以后的字符串
+       str1.erase(5,3) //删除编号5及以后的3个字符
+  提取子串 s1=str1.substr(6,5) //提取从编号为6开始的长度为5的子串
+  查找 index=str1.find(s2,5) //从左向右查找从编号5开始的s2子串的第一次的出现位置，不写默认从头开始
+       index=str1.rfind(s2,6)//从右向左查找从编号6开始的s2子串的第一次的出现位置
+       index=str1.find_first_of (str2) //查找str1和str2两个字符串共有的字符在str1中第一次出现的位置
+       *若查找不到，则都返回std::string::npos
+
+11.函数 (原则:高独立性、低耦合性)
+  实参、形参
+  void无返回值 return ;
+  头文件引用  <优先在系统函数库中寻找> "优先在于cpp文件同一个项目中寻找"
+  函数的声明 float sum(float,float)
+  
+  全局变量与局部变量同名时，局部变量将屏蔽全局变量
+  void func(int a[]) {...}  
+  int main() {func(a);} //数组名做函数参数时，传递的是地址，在函数中修改数值会影响主程序中
+
+  1.输出多个变量
+    (1).输入地址
+      void change(int&a,int&b)
+      { int t=a;a=b;b=t }
+    (2).全局变量
+    (3).返回指针
+      int* func(int a,int b)
+      {
+        int* value=new int [2];//在堆上分配2个整数的数组
+        value[0]=a+b;
+        value[1]=a-b;
+        return value; //返回指针
+      }
+      int main()
+      {
+        int* result=func(10,20);
+        int x=result[0]; int y=result[1];
+        delete[] result;//释放内存
+        cout<<x<<' '<<y;
+      }//int* 是指向整数的指针类型 eg int* ptr=&num  则*ptr=num
+    (4).返回结构体
+      struct stu{
+        int x=0; y=0;
+      };
+      stu func(int a,int b)
+      {
+        stu value;
+        value.a=b;
+        value.b=a;
+        return value;
+      }
+      int main()
+      {
+        stu p;
+        p=func(10,20);
+        cout<<p.a<<' '<<p.b;
+      }
+    (5).返回元组 tuple
+      #include<tuple>
+      tuple <int,int> values() //返回值是包含两个int的元组
+      {
+        int a=11;
+        int b=22;
+        return make_tuple(a,b);//创建并返回包含a,b的元组 或者 return {a,b};
+      }
+      int main()
+      {
+        tuple <int,int> result=values()
+        int x=get<0>(result); int y=get<1>(result); //访问元组元素
+        cout<<x<<' '<<y;
+      }
+    (6).返回一对
+      pair <string,int> getclass(int id){ //pair只能存储两个值
+        return make_pair("hello",id);
+      }
+      int main()
+      {
+        pair <string,int> a;
+        a=getclass(17781);
+        cout<<a.first<<' '<<a.second<<endl; //访问pair函数的语法
+      }
+  
+  2.函数重载
+    (1).void func(int a) {}
+      void func(string a) {} 
+      void func(int a,int b) {}//填入不同类型数值调用不同的函数
+    (2).使用类
+      class printer
+      {
+        public: //默认是private,仅类内可访问;而public全局可以访问
+          void func(int a) {}
+          void func(string a) {} 
+          void func(int a,int b) {}
+      };
+      int main()
+      {
+        printer pd;
+        pd.func(1);
+        pd.func("c++");
+        pd.func(1,2);
+      }
+    (3).运算符的重载
+      class box
+      {
+        public:
+          double v(void){ return l*b*h; }
+          void setl(double len){ l=len; }
+          void setb(double bre){ b=bre; }
+          void seth(double hei){ h=hei; }
+
+          box operator+(const box& b) //重载+运算符，用于把两个box对象相加
+                                        const box* b是指针;const box& b是引用 const 表示不能修改值
+          {
+             box boxx;
+             boxx.l=this->l+b.l;
+             boxx.b=this->b+b.b;
+             boxx.h=this->h+b.h;
+             return boxx;
+          }
+        private:
+          double l;
+          double b;
+          double h;
+      };
+      int main()
+      {
+        box box1,box2,box3;
+        ...//初始化box1,box2
+        box3=box1+box2; //加法的重载
+      }
+  
+  3.函数模板
+    template <typename T>
+    T func(T a,T b) {} //自动判断参数类型
+
+    template <typename T1,typename T2>
+    auto func(T1 a,T2 b) {} //多个参数也可
+
+    *auto 用于变量定义 ; template 用于 函数参数的定义。 两者不可互相代替
+
+  4.Lambda表达式
+    (1).int main()
+        {
+          auto lamba=[](){};
+          lambda();
+        }
+    (2).auto add[](int a,int b){};//有输入
+    (3).auto lambda=[x](){}; //按值捕获，获取x在定义时的值，后续x改变不影响
+        auto lambda=[&x](){}; //按引用捕获，获取x在调用时的值，后续x改变影响
+  5.经典例题:放苹果、前缀表达式(子问题思想)
+
+  6.快速排序
+  #include<iostream>
+  using namespace std;
+  int n;
+  void qsort(int a[],int l,int r)
+  {
+  	if (l>=r) return;
+  	int t=l,w=r,tmp=a[l];//以第一个为参考
+  	while (t<w)
+  	{
+  		while (a[w]>=tmp&& w>t) w--;
+  		if (w>t) {a[t]=a[w];t++;}//a[t]为空,a[w]填入空中
+  		while (a[t]<=tmp && w>t) t++;
+  		if (w>t) { a[w]=a[t];w--;}
+	  }
+	  a[t]=tmp;
+	  qsort(a,l,w-1);
+  	qsort(a,t+1,r);
+  } //填坑法
+  void sort(int a[],int l,int r)
+  {
+  	if (l>=r) return;
+  	int t=l,w=r,mid=a[(l+r)/2];//取中间位置为基准值
+  	while (t<w)
+  	{
+  		while (a[t]<mid && t<w) t++;
+  		while (a[w]>mid && t<w) w--;
+  		swap(a[t],a[w]);
+  		t++;
+  	} // Hoare分区方案
+  	sort(a,l,w-1);
+  	sort(a,t,r);
+  }
+
+  思路：
+  1.分解：选择一个元素为基准值(mid),排列使得基准值左边所有元素<=mid,右边>=mid
+  2.解决：对基准值左右侧进行快速排序
+  3.合并
+
+  最佳&平均 O(n log n)
+  最差O(n^2)
+
+  7.深度搜索(DFS) 空间复杂度取决于深度;时间复杂度较高
+
+19.指针
+  指向该变量的指针:某个变量的地址
+  取地址运算符& &c 向上去地址(升级)
+  指针运算符* *&c==c 向下去内容(降级)
+  两者优先级大于算术运算符，和逻辑非相同
+    (*pointer)++ 变量值+1;
+    *pointer++ 先取值再改变地址(++加多少取决于基类型)
+  **a 二维数组取[0][0]
+
+  指针变量:专门用于存放指针的变量
+  定义: int *pointer;
+  int 被称为基类型：指针变量指向的变量的类型//用于控制+1后地址加多少
+  pointer=&c;//pointer指向变量c
+  int *iPrt=nullptr;//或者NULL(C language)
+
+  指针与数组
+  int a[5]={1,2,3,4,5}
+  cout<<*a; //输出为10 
+  a==&a[0] //数组名转换为数组首元素地址
+  a是地址常量，不是变量，不能赋值
+  &a:表示数组的地址;a:表示数组第一个元素的地址.两者恰好相同
+  但a+1和&a+1不同
+  *(a+i)等价于a[i]
+  ex:
+  int main( )
+  {
+    int a[10], i, *p=a;
+    for (i=0;i<10;i++)
+      cin >> *p++;//先用后加
+    for (p--;p>=a; )
+    cout<<setw(3)<<*p--;
+    return 0;
+  }//倒序输出
+
+  二维数组与指针
+  对于二维函数a[][]
+  a与&a[0]等价:第一个一维数组的地址
+  a[0]与&a[0][0]等价
+  *a与a[0]等价
+  **a与a[0][0]等价
+  *(*(a+i)+j)相当于a[i][j]
+  *a+1 == &a[0][1]
+  
+  ex:int a[3][4];
+     int (*p)[4];//p的基类是int[4]
+     p=a;
+
+  字符串与指针
+    char c[6]={'h','e','l','l','o','\0'};
+    cout<<c;//实则直接输出hello,而非c的地址
+    若要输出地址：cout<<static_cast<void*>(c);
+
+    char *pc;
+    pc="hello";
+    cout<<pc<<endl;//输出hello
+    pc++;
+    cout<<pc<<endl;//输出ello
+    cout<<*pc<<endl;//输出e
+    char str[10]="pku";
+    pc=str;//cout<<pc;得到 pku
+    char (*pc)[10];
+	  pc = &a;//cout<<pc;得到地址
+    //不能通过pc改变字符串的值，因为"hello"是常数
+
+  指针用作函数参数
+    指针变量作函数参数
+      void pku(int *a,int *b){}
+      pku(&a,&b);
+
+    数组名作函数参数
+      void sum(int *p){}
+      void sum(int a[]){}//两者等价
+      sum(a);
+    
+      void sum(int (*p)[4]){}
+      void sum(int a[][4]){}
+      sum(a);
+
+    如何实现函数只读权限
+      符号常量 const 数据类型 常量名=常量值
+      const int *p=&a;
+      *p=225;//错误
+
+      void pku(const char *ptr)
+  
+  返回指针值的函数
+    int *pku(int x,int y)
+
+    int *getInt1()
+    {
+      int value1 = 20;
+      return &value1;//函数运行完内存立即释放，可能*p输出不为20
+    }
+    int main(){
+      int *p;
+      p = getInt1();
+      cout << *p << endl;
+    }//错误程序
+    确保返回地址的意义：
+      返回全局变量地址，而非局部变量的地址
+      返回静态局部变量的地址，而非动态局部变量的地址
+        int *getInt1()
+        {
+          static int value1 = 20;//当且仅当第一次运行的时候回初始化，例如第二次运行时value1==100,不会改变值
+          return &value1;
+        }
+        int *getInt2()
+        {
+          static int value2 = 30;//静态局部变量：在函数调用后不消失而保留原值
+          return &value2;
+        }
