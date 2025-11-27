@@ -8,49 +8,49 @@ This Markdown cheat sheet provides a quick overview of all the Markdown syntax e
 
 These are the elements outlined in John Gruber’s original design document. All Markdown applications support these elements.
 
-### Heading
+### Heading //标题(从大到小)
 
 # H1
 ## H2
 ### H3
 
-### Bold
+### Bold //加粗
 
 **bold text**
 
-### Italic
+### Italic //斜体
 
 *italicized text*
 
-### Blockquote
+### Blockquote //引用
 
 > blockquote
 
-### Ordered List
+### Ordered List //有序列表
 
 1. First item
 2. Second item
 3. Third item
 
-### Unordered List
+### Unordered List //无序列表(前面为·)
 
 - First item
 - Second item
 - Third item
 
-### Code
+### Code //代码
 
 `code`
 
-### Horizontal Rule
+### Horizontal Rule //水平划线
 
 ---
 
-### Link
+### Link //链接
 
 [Markdown Guide](https://www.markdownguide.org)
 
-### Image
+### Image //图片
 
 ![alt text](https://www.markdownguide.org/assets/images/tux.png)
 
@@ -58,7 +58,7 @@ These are the elements outlined in John Gruber’s original design document. All
 
 These elements extend the basic syntax by adding additional features. Not all Markdown applications support these elements.
 
-### Table
+### Table //表格
 
 | Syntax | Description |
 | ----------- | ----------- |
@@ -75,7 +75,7 @@ These elements extend the basic syntax by adding additional features. Not all Ma
 }
 ```
 
-### Footnote
+### Footnote //角标
 
 Here's a sentence with a footnote. [^1]
 
