@@ -1,0 +1,229 @@
+最基本的文件
+\documentclass{article} % 定义文档类型为文章
+\begin{document}
+Hello, LaTeX! % 文档内容
+\end{document}
+
+指令以\开始
+%表示注释
+引号是 `` content ''
+begin{...} 和 \end{...} 成对出现，表示环境的开始和结束
+换行使用两个反斜杠\\，放在文本后，表示结束该行
+段落之间空一行
+空格会被忽略
+特殊符号需要转义：# $ % & ~ _ ^ \ { } 转义符号为反斜杠\
+
+使用$...$表示行内数学公式
+使用\begin{equation} ... \end{equation}表示行间数学公式
+\ldots 表示省略号
+\frac{a}{b} 表示分数a/b
+^{}表示上标 _{}表示下标
+
+begin{itemize} ... \end{itemize}表示无序列表“·”
+begin{enumerate} ... \end{enumerate}表示有序列表
+
+\usepackage{包名} 用于引入宏包，扩展LaTeX功能 类似#include<>
+\usepackage{amsmath} 引入数学宏包amsmath(最常用的数学宏包)
+
+例如equation*环境，无标号数学公式
+
+align环境，对齐的多行公式，使用&制定对齐点，\\表示换行，默认有编号
+使用 \nonumber 去除某行编号
+使用 \label{eq:标号} 给公式编号
+align*环境，无编号的对齐多行公式
+
+gather 多行居中公式
+
+矩阵环境
+% 无括号
+\begin{matrix}
+a & b \\
+c & d
+\end{matrix}
+
+% 圆括号
+\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix}
+
+% 方括号
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
+
+% 花括号
+\begin{Bmatrix}
+a & b \\
+c & d
+\end{Bmatrix}
+
+% 行列式
+\begin{vmatrix}
+a & b \\
+c & d
+\end{vmatrix}
+
+% 范数
+\begin{Vmatrix}
+a & b \\
+c & d
+\end{Vmatrix}
+
+% 一般矩阵
+\begin{pmatrix}
+a_{11} & \cdots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+a_{m1} & \cdots & a_{mn}
+\end{pmatrix}
+
+\begin{equation*}
+\beta_i =
+\frac{\operatorname{Cov}(R_i, R_m)}
+{\operatorname{Var}(R_m)}
+\end{equation*} //使用operatorname命名运算符
+
+附表2：常用LaTeX数学符号
+一、希腊字母
+小写希腊字母
+符号	LaTeX 代码	符号	LaTeX 代码
+α	\alpha	β	\beta
+γ	\gamma	δ	\delta
+ε	\epsilon	ζ	\zeta
+η	\eta	θ	\theta
+ι	\iota	κ	\kappa
+λ	\lambda	μ	\mu
+ν	\nu	ξ	\xi
+ο	o	π	\pi
+ρ	\rho	σ	\sigma
+τ	\tau	υ	\upsilon
+φ	\phi 或 \varphi	χ	\chi
+ψ	\psi 或 \psi	ω	\omega
+大写希腊字母
+符号	LaTeX 代码	符号	LaTeX 代码
+Γ	\Gamma	Δ	\Delta
+Θ	\Theta	Λ	\Lambda
+Ξ	\Xi	Π	\Pi
+Σ	\Sigma	Υ	\Upsilon
+Φ	\Phi	Ψ	\Psi
+Ω	\Omega		
+注意：部分大写希腊字母与英文字母相同（如 A, B, E），直接使用即可。
+
+二、常用数学符号
+1. 基本运算符
+符号	LaTeX 代码	说明
++	+	加
+-	-	减
+×	\times	乘
+÷	\div	除
+±	\pm	正负号
+∓	\mp	负正号
+⋅	\cdot	点乘
+*	\ast	星号乘
+分数 \frac{a}{b}	分数a/b
+2. 关系符号
+符号	LaTeX 代码	说明
+=	=	等于
+≠	\neq 或 \ne	不等于
+≈	\approx	约等于
+≡	\equiv	恒等于
+∝	\propto	正比于
+<	<	小于
+>	>	大于
+≤	\leq 或 \le	小于等于
+≥	\geq 或 \ge	大于等于
+≪	\ll	远小于
+≫	\gg	远大于
+∼	\sim	相似
+≃	\simeq	近似相等
+≅	\cong	全等于
+⊥	\perp	垂直
+∥	\parallel	平行
+3. 集合符号
+符号	LaTeX 代码	说明
+∈	\in	属于
+∉	\notin	不属于
+⊂	\subset	子集
+⊆	\subseteq	子集（含相等）
+⊃	\supset	超集
+⊇	\supseteq	超集（含相等）
+∪	\cup	并集
+∩	\cap	交集
+∅	\emptyset 或 \varnothing	空集
+∀	\forall	任意
+∃	\exists	存在
+∄	\nexists	不存在
+ℕ	\mathbb{N}	自然数集
+ℤ	\mathbb{Z}	整数集
+ℚ	\mathbb{Q}	有理数集
+ℝ	\mathbb{R}	实数集
+ℂ	\mathbb{C}	复数集
+4. 微积分符号
+符号	LaTeX 代码	说明
+∂	\partial	偏微分
+∇	\nabla	梯度
+∫	\int	积分
+∬	\iint	二重积分
+∭	\iiint	三重积分
+∮	\oint	环路积分
+∯	\oiint	曲面积分
+∞	\infty	无穷大
+lim	\lim	极限
+∑	\sum	求和
+∏	\prod	求积
+′	' 或 ^\prime	导数符号
+5. 箭头符号
+符号	LaTeX 代码	说明
+→	\rightarrow 或 \to	向右箭头
+←	\leftarrow 或 \gets	向左箭头
+↔	\leftrightarrow	双向箭头
+⇒	\Rightarrow	向右双线箭头
+⇔	\Leftrightarrow	双向双线箭头
+↦	\mapsto	映射到
+→	\longrightarrow	长向右箭头
+6. 括号与定界符
+符号	LaTeX 代码	说明
+( )	( )	圆括号
+[ ]	[ ] 或 \lbrack \rbrack	方括号
+{ }	\{ \} 或 \lbrace \rbrace	花括号
+⟨ ⟩	\langle \rangle	角括号
+| 或 \vert	竖线
+‖	| 或 \Vert	双竖线
+⌊ ⌋	\lfloor \rfloor	向下取整
+⌈ ⌉	\lceil \rceil	向上取整
+7. 其他常用符号
+符号	LaTeX 代码	说明
+°	^\circ	度
+√	\sqrt{}	平方根
+√	\sqrt[n]{}	n次方根
+∠	\angle	角
+△	\triangle	三角形
+□	\square	正方形
+∵	\because	因为
+∴	\therefore	所以
+%	\%	百分号
+ℏ	\hbar	约化普朗克常数
+†	\dagger	匕首符号
+‡	\ddagger	双匕首符号
+∗	\ast	星号
+⋯	\cdots	水平省略号
+⋮	\vdots	垂直省略号
+⋱	\ddots	对角线省略号
+…	\dots	一般省略号
+8. 函数名称
+函数	LaTeX 代码	说明
+sin	\sin	正弦
+cos	\cos	余弦
+tan	\tan	正切
+log	\log	对数
+ln	\ln	自然对数
+exp	\exp	指数函数
+max	\max	最大值
+min	\min	最小值
+sup	\sup	上确界
+inf	\inf	下确界
+lim	\lim	极限
+det	\det	行列式
+dim	\dim	维数
+gcd	\gcd	最大公约数

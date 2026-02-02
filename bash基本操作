@@ -1,0 +1,76 @@
+# ====== 基础查看 ======
+
+pwd                     # 查看当前路径
+ls                      # 查看当前目录文件
+ls -l                   # 详细列表
+ls -a                   # 显示隐藏文件
+
+# ====== 目录操作 ======
+
+cd 目录名               # 进入目录
+cd ..                   # 返回上一级
+cd ~                    # 回到家目录
+mkdir test              # 新建目录 test
+rm -r test              # 删除目录 test
+
+# ====== 文件操作 ======
+
+touch a.cpp             # 新建文件
+cp a.cpp b.cpp          # 复制文件
+mv a.cpp b.cpp          # 重命名/移动
+rm a.cpp                # 删除文件
+
+# ====== 查看文件 ======
+
+cat a.cpp               # 查看全部内容
+less a.cpp              # 分页查看
+head a.cpp              # 看前几行
+tail a.cpp              # 看后几行
+
+# ====== 编辑文件 ======
+
+nano a.cpp              # 用 nano 编辑（新手推荐）
+vi a.cpp                # 用 vi 编辑
+
+# nano 保存：Ctrl+O 回车
+# nano 退出：Ctrl+X
+
+# ====== 编译运行 C/C++ ======
+
+g++ main.cpp -o main    # 编译
+./main                  # 运行
+
+# ====== 运行 Python ======
+
+python3 test.py
+
+# ====== 查看进程 ======
+
+ps aux | head           # 查看进程
+top                     # 动态查看（q退出）
+
+# ====== 网络/环境 ======
+
+whoami                  # 当前用户
+uname -a                # 系统信息
+df -h                   # 磁盘使用
+free -h                 # 内存情况
+
+# ====== 解压打包 ======
+
+tar -xvf a.tar          # 解压 tar
+tar -xzvf a.tar.gz      # 解压 tar.gz
+zip -r a.zip dir        # 压缩目录
+
+# ====== Git（如果用到） ======
+
+git clone URL
+git status
+git pull
+
+# ====== 快捷键 ======
+
+Ctrl+C                  # 强制停止
+Ctrl+D                  # 退出 shell
+clear                   # 清屏
+exit                    # 退出容器
